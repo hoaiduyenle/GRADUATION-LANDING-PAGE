@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hoai Duyen Le' Grad</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #fff7fb;
+      color: #111;
+    }
+
+    section {
+      width: 100%;
+      padding: 80px 6vw;
+    }
+
+    /* ================= HEADER ================= */
+    .hero-full {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+      background: #fff7fb;
+    }
+
+    .hero-full img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* ================= INFO BAR ================= */
+    .intro {
+        width: 100%;
+  padding: 0 6vw 40px !important;
+  margin-top: -80px !important;
+
+  position: relative;
+  z-index: 5;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    .info-bar {
+      width: 100%;
+      border: 2px solid #222;
+      border-radius: 24px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.88);
+      display: flex;
+      flex-wrap: wrap;
+      box-shadow: 12px 12px 0 #f7c5dc;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 34px 38px;
+      border-bottom: 1px dashed #999;
+    }
+
+    .info-item:not(.full) {
+      width: 33.3333%;
+      border-right: 1px dashed #999;
+    }
+
+    .info-item:nth-child(3) {
+      border-right: none;
+    }
+
+    .info-item.full {
+      width: 100%;
+      border-bottom: none;
+    }
+
+    .icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 4px solid #ec2f8c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      flex-shrink: 0;
+    }
+
+    .info-item h4 {
+      font-size: 26px;
+      margin-bottom: 8px;
+      font-weight: 900;
+    }
+
+    .info-item p {
+      color: #ec2f8c;
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .info-item span {
+      color: #333;
+      font-size: 20px;
+    }
+
+    /* ================= ALBUM ================= */
+    .album {
+      background: #fff;
+    }
+
+  .section-title {
+  position: relative;
+  display: inline-block;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(20px, 3vw, 42px);
+  color: #17263d;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -2px;
+  margin-bottom: 72px;
+}
+
+.section-title::before {
+  content: "✦";
+  position: absolute;
+  left: -46px;
+  top: 18%;
+  color: #f28ab8;
+  font-size: 34px;
+}
+
+.section-title::after {
+  content: "♡";
+  position: absolute;
+  right: -58px;
+  bottom: 0;
+  color: #ffc1d8;
+  font-size: 48px;
+  font-weight: 400;
+}
+
+.title-line-pink {
+  width: 420px;
+  max-width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #f7b8d0, transparent);
+  margin-top: -48px;
+  margin-bottom: 48px;
+}
+
+    .album-header {
+      margin-bottom: 28px;
+    }
+
+    .slider-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      background: #fff7fb;
+      border: 1px solid #ffd0e8;
+    }
+
+    .slider {
+      display: flex;
+      transition: transform 0.45s ease;
+    }
+
+    .slide {
+      min-width: 100%;
+      height: 80vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff7fb;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255, 255, 255, 0.88);
+      font-size: 30px;
+      cursor: pointer;
+      box-shadow: 0 6px 22px rgba(0, 0, 0, 0.15);
+    }
+
+    .prev { left: 22px; }
+    .next { right: 22px; }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #f5b4d4;
+      border: none;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background: #ec2f8c;
+      width: 34px;
+      border-radius: 999px;
+    }
+
+    /* ================= MAP ================= */
+    .map-section {
+      width: 100%;
+      background: #fff7fb;
+      padding: 80px 6vw;
+    }
+
+    .map-img {
+      width: 100%;
+      border-radius: 24px;
+      display: block;
+      object-fit: cover;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+    }
+
+    /* ================= END SECTION ================= */
+    .end-new {
+      min-height: 100vh;
+      padding: 90px 6vw 0;
+      background: radial-gradient(circle at 92% 18%, #fff 0%, #fff4fa 38%, transparent 62%),
+                  linear-gradient(135deg, #fff 0%, #fff8fc 48%, #ffe5f1 100%);
+      position: relative;
+      overflow: hidden;
+      text-align: left;
+    }
+
+    .end-new::after {
+      content: "";
+      position: absolute;
+      left: -8%;
+      bottom: -18%;
+      width: 120%;
+      height: 280px;
+      background: rgba(255, 206, 226, 0.38);
+      border-radius: 50% 50% 0 0;
+      transform: rotate(-3deg);
+      z-index: 0;
+    }
+
+    .end-content {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      align-items: end;
+      gap: 40px;
+      min-height: calc(100vh - 90px);
+    }
+
+    .end-left {
+      align-self: center;
+      padding-left: 2vw;
+      padding-bottom: 60px;
+    }
+
+    .end-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(68px, 7vw, 118px);
+      color: #17263d;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 24px;
+      letter-spacing: -2px;
+    }
+
+    .title-line {
+      width: 560px;
+      max-width: 90%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #f7b8d0, transparent);
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .title-line::after {
+      content: "✦";
+      position: absolute;
+      left: 48%;
+      top: -13px;
+      color: #f28ab8;
+      background: #fff8fc;
+      padding: 0 10px;
+    }
+
+    .end-copy {
+      max-width: 720px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(20px, 1.45vw, 28px);
+      line-height: 1.55;
+      color: #4d5a70;
+      margin-bottom: 28px;
+    }
+
+    .end-highlight {
+      max-width: 720px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(20px, 1.4vw, 27px);
+      line-height: 1.55;
+      color: #f06a9c;
+      font-weight: 600;
+      font-style: italic;
+      margin: 28px 0 44px;
+    }
+
+    .guestbook-new {
+      width: min(720px, 100%);
+      min-height: 160px;
+      border: 2px solid #ffc7dd;
+      border-radius: 28px;
+      padding: 28px 32px;
+      background: rgba(255, 255, 255, 0.58);
+      backdrop-filter: blur(4px);
+    }
+
+    .guestbook-new input {
+      width: 100%;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-family: Georgia, "Times New Roman", serif;
+      color: #4d5a70;
+      font-size: 22px;
+      margin-bottom: 32px;
+    }
+
+    .guestbook-new input::placeholder {
+      color: #9aa1ad;
+    }
+
+    .guestbook-new button {
+      border: none;
+      border-radius: 999px;
+      padding: 18px 38px;
+      background: linear-gradient(135deg, #ff8ab8, #ec2f8c);
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 12px 28px rgba(236, 47, 140, 0.28);
+    }
+
+    .guest-message {
+      margin-top: 18px;
+      color: #ec2f8c;
+      font-weight: 700;
+    }
+
+    .end-right {
+      align-self: end;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+    }
+
+    .end-right img {
+      width: 100%;
+      max-width: 720px;
+      max-height: 96vh;
+      object-fit: contain;
+      object-position: bottom right;
+      display: block;
+    }
+
+    .end-decor {
+      position: absolute;
+      color: #f28ab8;
+      z-index: 1;
+      font-size: 28px;
+    }
+
+    .decor-1 { left: 5vw; top: 15%; }
+    .decor-2 { left: 39vw; top: 17%; font-size: 42px; color: #ffc1d8; }
+
+    @media (max-width: 900px) {
+      section {
+        padding: 56px 5vw;
+      }
+
+      .intro {
+        margin-top: -10px !important;
+      }
+
+      .info-item:not(.full) {
+        width: 100%;
+        border-right: none;
+      }
+
+      .slide {
+        height: 420px;
+      }
+
+      .end-content {
+        grid-template-columns: 1fr;
+      }
+
+      .end-right {
+        justify-content: center;
+      }
+
+      .end-right img {
+        max-width: 520px;
+      }
+    }
+  </style>
+</head>
+<script>
+  window.addEventListener('click', () => {
+    const music = document.getElementById('bg-music');
+    music.play();
+  }, { once: true });
+</script>
+<body>
+  <!-- NHẠC NỀN -->
+<audio id="bg-music" autoplay loop>
+  <source src="music/graduation-music.mp3" type="audio/mpeg">
+</audio>
+  <!-- HEADER -->
+  <section class="hero-full">
+    <!-- Thay ảnh header tại đây: images/header-banner.png -->
+    <img src="images/header-banner.png" alt="Graduation Header Banner" />
+  </section>
+
+  <!-- BODY 1: INFO BAR -->
+  <section class="intro">
+    <div class="intro-grid">
+      <div class="info-bar">
+        <div class="info-item">
+          <div class="icon">📞</div>
+          <div>
+            <h4>CONTACT</h4>
+            <p>VÂN KIỀU: 0378143069</p>
+            <p>HỒNG VÂN: 0344673084</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="icon">🕓</div>
+          <div>
+            <h4>TIME</h4>
+            <p>16:00 - 18:00</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="icon">📅</div>
+          <div>
+            <h4>DATE</h4>
+            <p>24.05.2026</p>
+          </div>
+        </div>
+
+        <div class="info-item full">
+          <div class="icon">📍</div>
+          <div>
+            <h4>LOCATION</h4>
+            <p>HO CHI MINH UNIVERSITY OF BANKING</p>
+            <span>56 HOANG DIEU 2, THU DUC</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALBUM SLIDER -->
+  <section class="album">
+    <div class="album-header">
+      <h2 class="section-title">Graduation's moments</h2>
+      <div class="title-line-pink"></div>
+    </div>
+
+    <div class="slider-wrap">
+      <div class="slider" id="slider">
+        <div class="slide"><img src="images/photo-1.jpg" alt="Graduation photo 1" /></div>
+        <div class="slide"><img src="images/photo-2.jpg" alt="Graduation photo 2" /></div>
+        <div class="slide"><img src="images/photo-3.jpg" alt="Graduation photo 3" /></div>
+        <div class="slide"><img src="images/photo-4.jpg" alt="Graduation photo 4" /></div>
+        <div class="slide"><img src="images/photo-5.jpg" alt="Graduation photo 5" /></div>
+        <div class="slide"><img src="images/photo-6.jpg" alt="Graduation photo 6" /></div>
+      </div>
+
+      <button class="slider-btn prev" onclick="moveSlide(-1)">‹</button>
+      <button class="slider-btn next" onclick="moveSlide(1)">›</button>
+    </div>
+
+    <div class="dots" id="dots"></div>
+  </section>
+
+  <!-- MAP -->
+  <section class="map-section">
+    <h2 class="section-title">Follow this way to meet Hoai Duyen!</h2>
+    <div class="title-line-pink"></div>
+    <!-- Thay ảnh map tại đây: images/map-khu-a.png -->
+    <img class="map-img" src="images/map-khu-a.png" alt="Map Khu A" />
+  </section>
+
+  <!-- END -->
+  <section class="end-new">
+    <div class="end-decor decor-1">✦</div>
+    <div class="end-decor decor-2">♡</div>
+
+    <div class="end-content">
+      <div class="end-left">
+        <h2 class="end-title">Thank You</h2>
+        <div class="title-line"></div>
+
+        <p class="end-copy">
+          Cảm ơn vì đã xuất hiện trong quãng thanh xuân đẹp nhất của Hoài Duyên — cảm ơn vì đã cùng đồng hành và trưởng thành trong tất cả khoảnh khắc tại HUB.
+        </p>
+
+        <p class="end-copy">
+          Mỗi người rồi sẽ bước tiếp trên hành trình riêng của mình, nhưng hy vọng rằng khi nhìn lại quãng thời gian này, chúng ta vẫn sẽ nhớ về nhau bằng tất cả sự dịu dàng và trân trọng nhất.
+        </p>
+
+        <p class="end-highlight">
+          Thanh xuân khép lại không phải để kết thúc, mà để trở thành một điều thật đẹp để nhớ mãi về sau 💗
+        </p>
+
+        <form class="guestbook-new" onsubmit="saveGuestbook(event)">
+          <input id="guestInput" type="text" placeholder="✎  Viết lời chúc của bạn tại đây..." />
+          <button type="submit">➤  Gửi lời chúc</button>
+        </form>
+
+        <p id="guestMessage" class="guest-message"></p>
+      </div>
+
+      <div class="end-right">
+        <!-- Thay ảnh nhân vật tách nền tại đây: images/end-person.png -->
+        <img src="images/end-person.png" alt="Hoai Duyen Graduation" />
+      </div>
+    </div>
+  </section>
+
+  <script>
+    let currentSlide = 0;
+    const slider = document.getElementById("slider");
+    const slides = document.querySelectorAll(".slide");
+    const dotsContainer = document.getElementById("dots");
+
+    slides.forEach((_, index) => {
+      const dot = document.createElement("button");
+      dot.className = "dot";
+      dot.onclick = () => goToSlide(index);
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll(".dot");
+
+    function updateSlider() {
+      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+      dots.forEach((dot, index) => {
+        dot.classList.toggle("active", index === currentSlide);
+      });
+    }
+
+    function moveSlide(step) {
+      currentSlide = (currentSlide + step + slides.length) % slides.length;
+      updateSlider();
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      updateSlider();
+    }
+
+    setInterval(() => {
+      moveSlide(1);
+    }, 3500);
+
+    updateSlider();
+
+    <form 
+  action="https://formsubmit.co/duyenlegl@gmail.com" 
+  method="POST"
+  class="guestbook-new"
+>
+
+  <input 
+    type="text" 
+    name="message"
+    placeholder="✎  Viết lời chúc của bạn tại đây..." 
+    required
+  />
+
+  <button type="submit">
+    ➤  Gửi lời chúc
+  </button>
+
+  <!-- chống spam -->
+  <input type="hidden" name="_captcha" value="false">
+
+  <!-- tiêu đề mail -->
+  <input 
+    type="hidden" 
+    name="_subject" 
+    value="Lời chúc mới từ Graduation Landing Page 💗"
+  >
+
+</form>
+  </script>
+</body>
+</html>
