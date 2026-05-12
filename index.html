@@ -535,22 +535,31 @@
         </p>
 
         <form 
-          class="guestbook-new"
-          action="https://formsubmit.co/duyenlegl@gmail.com" 
-          method="POST"
-        >
-          <input 
-            type="text" 
-            name="message"
-            placeholder="✎  Viết lời chúc của bạn tại đây..." 
-            required
-          />
+  action="https://formsubmit.co/duyenlegl@gmail.com" 
+  method="POST"
+  class="guestbook-new"
+>
 
-          <button type="submit">➤  Gửi lời chúc</button>
+  <input 
+    type="text" 
+    name="message"
+    placeholder="✎  Viết lời chúc của bạn tại đây..." 
+    required
+  />
 
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_subject" value="Lời chúc mới từ Graduation Landing Page 💗">
-        </form>
+  <button type="submit">
+    ➤  Gửi lời chúc
+  </button>
+
+  <input type="hidden" name="_captcha" value="false">
+
+  <input 
+    type="hidden" 
+    name="_subject" 
+    value="Lời chúc mới từ Graduation Landing Page 💗"
+  >
+
+</form>
       </div>
 
       <div class="end-right">
@@ -611,6 +620,16 @@
         }, { once: true });
       }
     });
+    updateSlider();
+    const music = document.getElementById("bg-music");
+
+if (music) {
+  window.addEventListener("click", () => {
+    music.play().catch(() => {});
+  }, { once: true });
+}
+
+});
   </script>
 </body>
 </html>
