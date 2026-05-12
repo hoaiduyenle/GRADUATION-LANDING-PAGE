@@ -44,12 +44,11 @@
 
     /* ================= INFO BAR ================= */
     .intro {
-        width: 100%;
-  padding: 0 6vw 40px !important;
-  margin-top: -80px !important;
-
-  position: relative;
-  z-index: 5;
+      width: 100%;
+      padding-top: 0 !important;
+      margin-top: -20px !important;
+      position: relative;
+      z-index: 5;
     }
 
     .intro-grid {
@@ -125,45 +124,36 @@
       background: #fff;
     }
 
-  .section-title {
-  position: relative;
-  display: inline-block;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(20px, 3vw, 42px);
-  color: #17263d;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -2px;
-  margin-bottom: 72px;
-}
+    .section-title {
+      position: relative;
+      display: inline-block;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(20px, 3vw, 42px);
+      color: #17263d;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 32px;
+    }
 
-.section-title::before {
-  content: "✦";
-  position: absolute;
-  left: -46px;
-  top: 18%;
-  color: #f28ab8;
-  font-size: 34px;
-}
+    .section-title::before {
+      content: "✦";
+      position: absolute;
+      left: -28px;
+      top: 12%;
+      color: #f28ab8;
+      font-size: 20px;
+    }
 
-.section-title::after {
-  content: "♡";
-  position: absolute;
-  right: -58px;
-  bottom: 0;
-  color: #ffc1d8;
-  font-size: 48px;
-  font-weight: 400;
-}
-
-.title-line-pink {
-  width: 420px;
-  max-width: 80%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #f7b8d0, transparent);
-  margin-top: -48px;
-  margin-bottom: 48px;
-}
+    .section-title::after {
+      content: "♡";
+      position: absolute;
+      right: -34px;
+      bottom: -4px;
+      color: #ffc1d8;
+      font-size: 28px;
+      font-weight: 400;
+    }
 
     .album-header {
       margin-bottom: 28px;
@@ -443,17 +433,8 @@
     }
   </style>
 </head>
-<script>
-  window.addEventListener('click', () => {
-    const music = document.getElementById('bg-music');
-    music.play();
-  }, { once: true });
-</script>
+
 <body>
-  <!-- NHẠC NỀN -->
-<audio id="bg-music" autoplay loop>
-  <source src="music/graduation-music.mp3" type="audio/mpeg">
-</audio>
   <!-- HEADER -->
   <section class="hero-full">
     <!-- Thay ảnh header tại đây: images/header-banner.png -->
@@ -504,8 +485,7 @@
   <!-- ALBUM SLIDER -->
   <section class="album">
     <div class="album-header">
-      <h2 class="section-title">Graduation's moments</h2>
-      <div class="title-line-pink"></div>
+      <h2 class="section-title">GRADUATION'S MOMENT</h2>
     </div>
 
     <div class="slider-wrap">
@@ -527,8 +507,7 @@
 
   <!-- MAP -->
   <section class="map-section">
-    <h2 class="section-title">Follow this way to meet Hoai Duyen!</h2>
-    <div class="title-line-pink"></div>
+    <h2 class="section-title">MAP & INFORMATION</h2>
     <!-- Thay ảnh map tại đây: images/map-khu-a.png -->
     <img class="map-img" src="images/map-khu-a.png" alt="Map Khu A" />
   </section>
@@ -552,15 +531,26 @@
         </p>
 
         <p class="end-highlight">
-          Thanh xuân khép lại không phải để kết thúc, mà để trở thành một điều thật đẹp để nhớ mãi về sau 💗
+          Thanh xuân khép lại không phải để kết thúc, mà để trở thành một điều thật đẹp để nhớ mãi về sau 💗 
         </p>
 
-        <form class="guestbook-new" onsubmit="saveGuestbook(event)">
-          <input id="guestInput" type="text" placeholder="✎  Viết lời chúc của bạn tại đây..." />
-          <button type="submit">➤  Gửi lời chúc</button>
-        </form>
+        <form 
+          class="guestbook-new"
+          action="https://formsubmit.co/duyenlegl@gmail.com" 
+          method="POST"
+        >
+          <input 
+            type="text" 
+            name="message"
+            placeholder="✎  Viết lời chúc của bạn tại đây..." 
+            required
+          />
 
-        <p id="guestMessage" class="guest-message"></p>
+          <button type="submit">➤  Gửi lời chúc</button>
+
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_subject" value="Lời chúc mới từ Graduation Landing Page 💗">
+        </form>
       </div>
 
       <div class="end-right">
@@ -571,71 +561,56 @@
   </section>
 
   <script>
-    let currentSlide = 0;
-    const slider = document.getElementById("slider");
-    const slides = document.querySelectorAll(".slide");
-    const dotsContainer = document.getElementById("dots");
+    window.addEventListener("DOMContentLoaded", () => {
+      let currentSlide = 0;
+      const slider = document.getElementById("slider");
+      const slides = document.querySelectorAll(".slide");
+      const dotsContainer = document.getElementById("dots");
 
-    slides.forEach((_, index) => {
-      const dot = document.createElement("button");
-      dot.className = "dot";
-      dot.onclick = () => goToSlide(index);
-      dotsContainer.appendChild(dot);
+      if (slider && slides.length && dotsContainer) {
+        dotsContainer.innerHTML = "";
+
+        slides.forEach((_, index) => {
+          const dot = document.createElement("button");
+          dot.className = "dot";
+          dot.type = "button";
+          dot.addEventListener("click", () => goToSlide(index));
+          dotsContainer.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll(".dot");
+
+        function updateSlider() {
+          slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+          dots.forEach((dot, index) => {
+            dot.classList.toggle("active", index === currentSlide);
+          });
+        }
+
+        window.moveSlide = function(step) {
+          currentSlide = (currentSlide + step + slides.length) % slides.length;
+          updateSlider();
+        };
+
+        function goToSlide(index) {
+          currentSlide = index;
+          updateSlider();
+        }
+
+        setInterval(() => {
+          window.moveSlide(1);
+        }, 3500);
+
+        updateSlider();
+      }
+
+      const music = document.getElementById("bg-music");
+      if (music) {
+        window.addEventListener("click", () => {
+          music.play().catch(() => {});
+        }, { once: true });
+      }
     });
-
-    const dots = document.querySelectorAll(".dot");
-
-    function updateSlider() {
-      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-      dots.forEach((dot, index) => {
-        dot.classList.toggle("active", index === currentSlide);
-      });
-    }
-
-    function moveSlide(step) {
-      currentSlide = (currentSlide + step + slides.length) % slides.length;
-      updateSlider();
-    }
-
-    function goToSlide(index) {
-      currentSlide = index;
-      updateSlider();
-    }
-
-    setInterval(() => {
-      moveSlide(1);
-    }, 3500);
-
-    updateSlider();
-
-    <form 
-  action="https://formsubmit.co/duyenlegl@gmail.com" 
-  method="POST"
-  class="guestbook-new"
->
-
-  <input 
-    type="text" 
-    name="message"
-    placeholder="✎  Viết lời chúc của bạn tại đây..." 
-    required
-  />
-
-  <button type="submit">
-    ➤  Gửi lời chúc
-  </button>
-
-  <!-- chống spam -->
-  <input type="hidden" name="_captcha" value="false">
-
-  <!-- tiêu đề mail -->
-  <input 
-    type="hidden" 
-    name="_subject" 
-    value="Lời chúc mới từ Graduation Landing Page 💗"
-  >
-
-</form>
   </script>
 </body>
 </html>
