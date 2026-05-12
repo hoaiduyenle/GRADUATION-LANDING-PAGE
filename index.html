@@ -490,12 +490,12 @@
 
     <div class="slider-wrap">
       <div class="slider" id="slider">
-        <div class="slide"><img src="images/photo-1.jpg" alt="Graduation photo 1" /></div>
-        <div class="slide"><img src="images/photo-2.jpg" alt="Graduation photo 2" /></div>
-        <div class="slide"><img src="images/photo-3.jpg" alt="Graduation photo 3" /></div>
-        <div class="slide"><img src="images/photo-4.jpg" alt="Graduation photo 4" /></div>
-        <div class="slide"><img src="images/photo-5.jpg" alt="Graduation photo 5" /></div>
-        <div class="slide"><img src="images/photo-6.jpg" alt="Graduation photo 6" /></div>
+  <div class="slide"><img src="images/photo-1.jpg" alt="Graduation photo 1" /></div>
+  <div class="slide"><img src="images/photo-2.jpg" alt="Graduation photo 2" /></div>
+  <div class="slide"><img src="images/photo-3.jpg" alt="Graduation photo 3" /></div>
+  <div class="slide"><img src="images/photo-4.jpg" alt="Graduation photo 4" /></div>
+  <div class="slide"><img src="images/photo-5.jpg" alt="Graduation photo 5" /></div>
+  <div class="slide"><img src="images/photo-6.jpg" alt="Graduation photo 6" /></div>
       </div>
 
       <button class="slider-btn prev" onclick="moveSlide(-1)">‹</button>
@@ -507,7 +507,7 @@
 
   <!-- MAP -->
   <section class="map-section">
-    <h2 class="section-title">MAP & INFORMATION</h2>
+    <h2 class="section-title">Follow this way to meet Hoai Duyen!</h2>
     <!-- Thay ảnh map tại đây: images/map-khu-a.png -->
     <img class="map-img" src="images/map-khu-a.png" alt="Map Khu A" />
   </section>
@@ -570,66 +570,61 @@
   </section>
 
   <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      let currentSlide = 0;
-      const slider = document.getElementById("slider");
-      const slides = document.querySelectorAll(".slide");
-      const dotsContainer = document.getElementById("dots");
+  window.addEventListener("DOMContentLoaded", () => {
+    let currentSlide = 0;
 
-      if (slider && slides.length && dotsContainer) {
-        dotsContainer.innerHTML = "";
+    const slider = document.getElementById("slider");
+    const slides = document.querySelectorAll(".slide");
+    const dotsContainer = document.getElementById("dots");
 
-        slides.forEach((_, index) => {
-          const dot = document.createElement("button");
-          dot.className = "dot";
-          dot.type = "button";
-          dot.addEventListener("click", () => goToSlide(index));
-          dotsContainer.appendChild(dot);
-        });
+    if (!slider || slides.length === 0 || !dotsContainer) {
+      console.log("Slider thiếu ID slider / slide / dots");
+      return;
+    }
 
-        const dots = document.querySelectorAll(".dot");
+    dotsContainer.innerHTML = "";
 
-        function updateSlider() {
-          slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-          dots.forEach((dot, index) => {
-            dot.classList.toggle("active", index === currentSlide);
-          });
-        }
+    slides.forEach((_, index) => {
+      const dot = document.createElement("button");
+      dot.className = "dot";
+      dot.type = "button";
 
-        window.moveSlide = function(step) {
-          currentSlide = (currentSlide + step + slides.length) % slides.length;
-          updateSlider();
-        };
-
-        function goToSlide(index) {
-          currentSlide = index;
-          updateSlider();
-        }
-
-        setInterval(() => {
-          window.moveSlide(1);
-        }, 3500);
-
+      dot.addEventListener("click", () => {
+        currentSlide = index;
         updateSlider();
-      }
+      });
 
-      const music = document.getElementById("bg-music");
-      if (music) {
-        window.addEventListener("click", () => {
-          music.play().catch(() => {});
-        }, { once: true });
-      }
+      dotsContainer.appendChild(dot);
     });
+
+    const dots = document.querySelectorAll(".dot");
+
+    function updateSlider() {
+      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+      dots.forEach((dot, index) => {
+        dot.classList.toggle("active", index === currentSlide);
+      });
+    }
+
+    window.moveSlide = function(step) {
+      currentSlide = (currentSlide + step + slides.length) % slides.length;
+      updateSlider();
+    };
+
+    setInterval(() => {
+      window.moveSlide(1);
+    }, 3500);
+
     updateSlider();
+
     const music = document.getElementById("bg-music");
-
-if (music) {
-  window.addEventListener("click", () => {
-    music.play().catch(() => {});
-  }, { once: true });
-}
-
-});
-  </script>
+    if (music) {
+      window.addEventListener("click", () => {
+        music.play().catch(() => {});
+      }, { once: true });
+    }
+  });
+</script>
 </body>
 </html>
