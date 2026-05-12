@@ -441,6 +441,11 @@
     <img src="images/header-banner.png" alt="Graduation Header Banner" />
   </section>
 
+  <!-- NHẠC NỀN -->
+<audio id="bg-music" loop>
+  <source src="graduation-music.mp3" type="audio/mpeg">
+</audio>
+
   <!-- BODY 1: INFO BAR -->
   <section class="intro">
     <div class="intro-grid">
@@ -621,11 +626,16 @@
     updateSlider();
 
     const music = document.getElementById("bg-music");
-    if (music) {
-      window.addEventListener("click", () => {
-        music.play().catch(() => {});
-      }, { once: true });
-    }
+
+if (music) {
+  music.volume = 0.6;
+
+  window.addEventListener("click", () => {
+    music.play().catch((error) => {
+      console.log("Music blocked:", error);
+    });
+  }, { once: true });
+}
   });
 </script>
 </body>
