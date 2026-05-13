@@ -544,6 +544,69 @@
     display: none !important;
   }
 }
+/* ===== FIX ALBUM MOBILE OVERFLOW ===== */
+@media (max-width: 768px) {
+  .album {
+    padding: 48px 20px !important;
+    overflow-x: hidden !important;
+  }
+
+  .album-magazine,
+  .album-mag-grid {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .album-side,
+  .mag-side {
+    width: 100% !important;
+    min-height: auto !important;
+    border-right: none !important;
+    border-bottom: 1px solid #d8d0ca !important;
+    padding-right: 0 !important;
+    padding-bottom: 24px !important;
+    margin-bottom: 28px !important;
+  }
+
+  .section-title {
+    max-width: 100% !important;
+    font-size: clamp(30px, 10vw, 44px) !important;
+    line-height: 1.05 !important;
+    letter-spacing: -1px !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .section-title::after {
+    right: -22px !important;
+  }
+
+  .mag-caption {
+    max-width: 100% !important;
+    font-size: 18px !important;
+  }
+
+  .mag-vertical {
+    display: none !important;
+  }
+
+  .slider-wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+
+  .slide {
+    height: 58vh !important;
+    min-width: 100% !important;
+  }
+
+  .slide img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+}
   </style>
 </head>
 
